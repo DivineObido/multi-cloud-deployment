@@ -1,0 +1,20 @@
+# Traffic Router Configuration
+
+# Domain Configuration
+domain_name = "your-domain.com"
+subdomain   = "app"
+
+# Cloud Endpoints (these will be populated by Terraform outputs from AWS/Azure)
+aws_endpoint   = "http://your-aws-alb-dns-name"
+azure_endpoint = "http://your-azure-app-gateway-ip"
+
+# Cloudflare Configuration
+cloudflare_api_token = "your-cloudflare-api-token"
+
+# Environment
+environment = "prod"
+
+# Health Check Configuration
+health_check_interval = 60
+failover_threshold    = 3
+session_affinity_ttl  = 3600

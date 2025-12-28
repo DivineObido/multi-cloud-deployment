@@ -1,0 +1,1070 @@
+
+       _               _
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V /
+  \___|_| |_|\___|\___|_|\_\___/ \_/
+
+By Prisma Cloud | version: 3.2.495 
+
+terraform scan results:
+
+Passed checks: 203, Failed checks: 22, Skipped checks: 0
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /aws/main.tf:15-26
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+Check: CKV_GCP_114: "Ensure public access prevention is enforced on Cloud Storage bucket"
+	PASSED for resource: google_storage_bucket.security_logs
+	File: /gcp/main.tf:344-380
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/bc-google-cloud-114
+Check: CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
+	PASSED for resource: google_storage_bucket.security_logs
+	File: /gcp/main.tf:344-380
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-cloud-storage-has-versioning-enabled
+Check: CKV_GCP_63: "Bucket should not log to itself"
+	PASSED for resource: google_storage_bucket.security_logs
+	File: /gcp/main.tf:344-380
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-logging-3
+Check: CKV_GCP_62: "Bucket should log access"
+	PASSED for resource: google_storage_bucket.security_logs
+	File: /gcp/main.tf:344-380
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-logging-2
+Check: CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
+	PASSED for resource: google_storage_bucket.security_logs
+	File: /gcp/main.tf:344-380
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-gcs-2
+Check: CKV_GCP_114: "Ensure public access prevention is enforced on Cloud Storage bucket"
+	PASSED for resource: google_storage_bucket.access_logs
+	File: /gcp/main.tf:383-425
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/bc-google-cloud-114
+Check: CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
+	PASSED for resource: google_storage_bucket.access_logs
+	File: /gcp/main.tf:383-425
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-cloud-storage-has-versioning-enabled
+Check: CKV_GCP_63: "Bucket should not log to itself"
+	PASSED for resource: google_storage_bucket.access_logs
+	File: /gcp/main.tf:383-425
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-logging-3
+Check: CKV_GCP_62: "Bucket should log access"
+	PASSED for resource: google_storage_bucket.access_logs
+	File: /gcp/main.tf:383-425
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-logging-2
+Check: CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
+	PASSED for resource: google_storage_bucket.access_logs
+	File: /gcp/main.tf:383-425
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-gcs-2
+Check: CKV_GCP_114: "Ensure public access prevention is enforced on Cloud Storage bucket"
+	PASSED for resource: google_storage_bucket.audit_logs
+	File: /gcp/main.tf:428-453
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/bc-google-cloud-114
+Check: CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
+	PASSED for resource: google_storage_bucket.audit_logs
+	File: /gcp/main.tf:428-453
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-cloud-storage-has-versioning-enabled
+Check: CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
+	PASSED for resource: google_storage_bucket.audit_logs
+	File: /gcp/main.tf:428-453
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-gcs-2
+Check: CKV_GCP_43: "Ensure KMS encryption keys are rotated within a period of 90 days"
+	PASSED for resource: google_kms_crypto_key.security_logs
+	File: /gcp/main.tf:461-477
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/bc-gcp-general-4
+Check: CKV_GCP_82: "Ensure KMS keys are protected from deletion"
+	PASSED for resource: google_kms_crypto_key.security_logs
+	File: /gcp/main.tf:461-477
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-kms-keys-are-protected-from-deletion
+Check: CKV_GCP_28: "Ensure that Cloud Storage bucket is not anonymously or publicly accessible"
+	PASSED for resource: google_storage_bucket_iam_binding.security_logs_sink
+	File: /gcp/main.tf:480-486
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-public-policies/bc-gcp-public-1
+Check: CKV_AWS_65: "Ensure container insights are enabled on ECS cluster"
+	PASSED for resource: module.ecs.aws_ecs_cluster.main
+	File: /modules/aws/ecs/main.tf:2-15
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-logging-11
+Check: CKV_AWS_223: "Ensure ECS Cluster enables logging of ECS Exec"
+	PASSED for resource: module.ecs.aws_ecs_cluster.main
+	File: /modules/aws/ecs/main.tf:2-15
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-ecs-cluster-enables-logging-of-ecs-exec
+Check: CKV_AWS_97: "Ensure Encryption in transit is enabled for EFS volumes in ECS Task definitions"
+	PASSED for resource: module.ecs.aws_ecs_task_definition.app
+	File: /modules/aws/ecs/main.tf:18-66
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-39
+Check: CKV_AWS_249: "Ensure that the Execution Role ARN and the Task Role ARN are different in ECS Task definitions"
+	PASSED for resource: module.ecs.aws_ecs_task_definition.app
+	File: /modules/aws/ecs/main.tf:18-66
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-the-aws-execution-role-arn-and-task-role-arn-are-different-in-ecs-task-definitions
+Check: CKV_AWS_336: "Ensure ECS containers are limited to read-only access to root filesystems"
+	PASSED for resource: module.ecs.aws_ecs_task_definition.app
+	File: /modules/aws/ecs/main.tf:18-66
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-336
+Check: CKV_AWS_333: "Ensure ECS services do not have public IP addresses assigned to them automatically"
+	PASSED for resource: module.ecs.aws_ecs_service.app
+	File: /modules/aws/ecs/main.tf:69-95
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-333
+Check: CKV_AWS_332: "Ensure ECS Fargate services run on the latest Fargate platform version"
+	PASSED for resource: module.ecs.aws_ecs_service.app
+	File: /modules/aws/ecs/main.tf:69-95
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-332
+Check: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+	PASSED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24
+Check: CKV_AWS_55: "Ensure S3 bucket has ignore public ACLs enabled"
+	PASSED for resource: module.ecs.aws_s3_bucket_public_access_block.alb_logs
+	File: /modules/aws/ecs/main.tf:133-140
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21
+Check: CKV_AWS_53: "Ensure S3 bucket has block public ACLS enabled"
+	PASSED for resource: module.ecs.aws_s3_bucket_public_access_block.alb_logs
+	File: /modules/aws/ecs/main.tf:133-140
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19
+Check: CKV_AWS_54: "Ensure S3 bucket has block public policy enabled"
+	PASSED for resource: module.ecs.aws_s3_bucket_public_access_block.alb_logs
+	File: /modules/aws/ecs/main.tf:133-140
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20
+Check: CKV_AWS_56: "Ensure S3 bucket has 'restrict_public_buckets' enabled"
+	PASSED for resource: module.ecs.aws_s3_bucket_public_access_block.alb_logs
+	File: /modules/aws/ecs/main.tf:133-140
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22
+Check: CKV_AWS_70: "Ensure S3 bucket does not allow an action with any Principal"
+	PASSED for resource: module.ecs.aws_s3_bucket_policy.alb_logs
+	File: /modules/aws/ecs/main.tf:143-180
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-23
+Check: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+	PASSED for resource: module.ecs.aws_s3_bucket_policy.alb_logs
+	File: /modules/aws/ecs/main.tf:143-180
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24
+Check: CKV_AWS_328: "Ensure that ALB is configured with defensive or strictest desync mitigation mode"
+	PASSED for resource: module.ecs.aws_lb.app
+	File: /modules/aws/ecs/main.tf:185-209
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-328
+Check: CKV_AWS_131: "Ensure that ALB drops HTTP headers"
+	PASSED for resource: module.ecs.aws_lb.app
+	File: /modules/aws/ecs/main.tf:185-209
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-alb-drops-http-headers
+Check: CKV_AWS_91: "Ensure the ELBv2 (Application/Network) has access logging enabled"
+	PASSED for resource: module.ecs.aws_lb.app
+	File: /modules/aws/ecs/main.tf:185-209
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-logging-22
+Check: CKV_AWS_150: "Ensure that Load Balancer has deletion protection enabled"
+	PASSED for resource: module.ecs.aws_lb.app
+	File: /modules/aws/ecs/main.tf:185-209
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-150
+Check: CKV_AWS_261: "Ensure HTTP HTTPS Target group defines Healthcheck"
+	PASSED for resource: module.ecs.aws_lb_target_group.app
+	File: /modules/aws/ecs/main.tf:212-236
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-kendra-index-server-side-encryption-uses-customer-managed-keys-cmks
+Check: CKV_AWS_233: "Ensure Create before destroy for ACM certificates"
+	PASSED for resource: module.ecs.aws_acm_certificate.app
+	File: /modules/aws/ecs/main.tf:239-256
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-acm-certificate-enables-create-before-destroy
+Check: CKV_AWS_234: "Verify logging preference for ACM certificates"
+	PASSED for resource: module.ecs.aws_acm_certificate.app
+	File: /modules/aws/ecs/main.tf:239-256
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-acm-certificates-has-logging-preference
+Check: CKV_AWS_192: "Ensure WAF prevents message lookup in Log4j2. See CVE-2021-44228 aka log4jshell"
+	PASSED for resource: module.ecs.aws_wafv2_web_acl.app
+	File: /modules/aws/ecs/main.tf:259-408
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-waf-prevents-message-lookup-in-log4j2
+Check: CKV_AWS_342: "Ensure WAF rule has any actions"
+	PASSED for resource: module.ecs.aws_wafv2_web_acl.app
+	File: /modules/aws/ecs/main.tf:259-408
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-342
+Check: CKV_AWS_175: "Ensure WAF has associated rules"
+	PASSED for resource: module.ecs.aws_wafv2_web_acl.app
+	File: /modules/aws/ecs/main.tf:259-408
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-networking-64
+Check: CKV_AWS_2: "Ensure ALB protocol is HTTPS"
+	PASSED for resource: module.ecs.aws_lb_listener.app_https
+	File: /modules/aws/ecs/main.tf:417-434
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-29
+Check: CKV_AWS_2: "Ensure ALB protocol is HTTPS"
+	PASSED for resource: module.ecs.aws_lb_listener.app_http_redirect
+	File: /modules/aws/ecs/main.tf:437-457
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-29
+Check: CKV_AWS_7: "Ensure rotation for customer created CMKs is enabled"
+	PASSED for resource: module.ecs.aws_kms_key.logs
+	File: /modules/aws/ecs/main.tf:460-500
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-8
+Check: CKV_AWS_33: "Ensure KMS key policy does not contain wildcard (*) principal"
+	PASSED for resource: module.ecs.aws_kms_key.logs
+	File: /modules/aws/ecs/main.tf:460-500
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-kms-key-policy-does-not-contain-wildcard-principal
+Check: CKV_AWS_227: "Ensure KMS key is enabled"
+	PASSED for resource: module.ecs.aws_kms_key.logs
+	File: /modules/aws/ecs/main.tf:460-500
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-key-management-service-kms-key-is-enabled
+Check: CKV_AWS_338: "Ensure CloudWatch log groups retains logs for at least 1 year"
+	PASSED for resource: module.ecs.aws_cloudwatch_log_group.ecs_logs
+	File: /modules/aws/ecs/main.tf:512-522
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-338
+Check: CKV_AWS_66: "Ensure that CloudWatch Log Group specifies retention days"
+	PASSED for resource: module.ecs.aws_cloudwatch_log_group.ecs_logs
+	File: /modules/aws/ecs/main.tf:512-522
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-13
+Check: CKV_AWS_158: "Ensure that CloudWatch Log Group is encrypted by KMS"
+	PASSED for resource: module.ecs.aws_cloudwatch_log_group.ecs_logs
+	File: /modules/aws/ecs/main.tf:512-522
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-cloudwatch-log-group-is-encrypted-by-kms
+Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group.alb
+	File: /modules/aws/ecs/main.tf:525-536
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: module.ecs.aws_security_group.alb
+	File: /modules/aws/ecs/main.tf:525-536
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+	PASSED for resource: module.ecs.aws_security_group.alb
+	File: /modules/aws/ecs/main.tf:525-536
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: module.ecs.aws_security_group.alb
+	File: /modules/aws/ecs/main.tf:525-536
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+	PASSED for resource: module.ecs.aws_security_group.alb
+	File: /modules/aws/ecs/main.tf:525-536
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group.alb
+	File: /modules/aws/ecs/main.tf:525-536
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_https
+	File: /modules/aws/ecs/main.tf:539-547
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_https
+	File: /modules/aws/ecs/main.tf:539-547
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_https
+	File: /modules/aws/ecs/main.tf:539-547
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_https
+	File: /modules/aws/ecs/main.tf:539-547
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_https
+	File: /modules/aws/ecs/main.tf:539-547
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_http_cloudfront
+	File: /modules/aws/ecs/main.tf:550-558
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_http_cloudfront
+	File: /modules/aws/ecs/main.tf:550-558
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_http_cloudfront
+	File: /modules/aws/ecs/main.tf:550-558
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_http_cloudfront
+	File: /modules/aws/ecs/main.tf:550-558
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_ingress_http_cloudfront
+	File: /modules/aws/ecs/main.tf:550-558
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_to_ecs
+	File: /modules/aws/ecs/main.tf:566-574
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_to_ecs
+	File: /modules/aws/ecs/main.tf:566-574
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_egress_https
+	File: /modules/aws/ecs/main.tf:577-585
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+	PASSED for resource: module.ecs.aws_security_group_rule.alb_egress_https
+	File: /modules/aws/ecs/main.tf:577-585
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group.ecs_tasks
+	File: /modules/aws/ecs/main.tf:588-631
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: module.ecs.aws_security_group.ecs_tasks
+	File: /modules/aws/ecs/main.tf:588-631
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+	PASSED for resource: module.ecs.aws_security_group.ecs_tasks
+	File: /modules/aws/ecs/main.tf:588-631
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: module.ecs.aws_security_group.ecs_tasks
+	File: /modules/aws/ecs/main.tf:588-631
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+	PASSED for resource: module.ecs.aws_security_group.ecs_tasks
+	File: /modules/aws/ecs/main.tf:588-631
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.ecs.aws_security_group.ecs_tasks
+	File: /modules/aws/ecs/main.tf:588-631
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+Check: CKV_AWS_61: "Ensure AWS IAM policy does not allow assume role permission across all services"
+	PASSED for resource: module.ecs.aws_iam_role.ecs_execution_role
+	File: /modules/aws/ecs/main.tf:634-655
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: module.ecs.aws_iam_role.ecs_execution_role
+	File: /modules/aws/ecs/main.tf:634-655
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-44
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.ecs.aws_iam_role.ecs_execution_role
+	File: /modules/aws/ecs/main.tf:634-655
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.ecs.aws_iam_role_policy_attachment.ecs_execution_role_policy
+	File: /modules/aws/ecs/main.tf:657-660
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_61: "Ensure AWS IAM policy does not allow assume role permission across all services"
+	PASSED for resource: module.ecs.aws_iam_role.ecs_task_role
+	File: /modules/aws/ecs/main.tf:663-684
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: module.ecs.aws_iam_role.ecs_task_role
+	File: /modules/aws/ecs/main.tf:663-684
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-44
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.ecs.aws_iam_role.ecs_task_role
+	File: /modules/aws/ecs/main.tf:663-684
+	Calling File: /aws/main.tf:46-62
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	PASSED for resource: module.vpc.aws_subnet.public
+	File: /modules/aws/vpc/main.tf:26-40
+	Calling File: /aws/main.tf:34-43
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	PASSED for resource: module.vpc.aws_subnet.private
+	File: /modules/aws/vpc/main.tf:43-56
+	Calling File: /aws/main.tf:34-43
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+Check: CKV_AZURE_166: "Ensure container image quarantine, scan, and mark images verified"
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-166
+Check: CKV_AZURE_164: "Ensures that ACR uses signed/trusted images"
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-164
+Check: CKV_AZURE_163: "Enable vulnerability scanning for container images."
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-163
+Check: CKV_AZURE_167: "Ensure a retention policy is set to cleanup untagged manifests."
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-167
+Check: CKV_AZURE_165: "Ensure geo-replicated container registries to match multi-region container deployments."
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-165
+Check: CKV_AZURE_139: "Ensure ACR set to disable public networking"
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-azure-acr-is-set-to-disable-public-networking
+Check: CKV_AZURE_233: "Ensure Azure Container Registry (ACR) is zone redundant"
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-233
+Check: CKV_AZURE_138: "Ensures that ACR disables anonymous pulling of images"
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/ensure-azure-acr-disables-anonymous-image-pulling
+Check: CKV_AZURE_137: "Ensure ACR admin account is disabled"
+	PASSED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/bc-azure-137
+Check: CKV_AZURE_109: "Ensure that key vault allows firewall rules settings"
+	PASSED for resource: module.aci.azurerm_key_vault.acr
+	File: /modules/azure/aci/main.tf:85-118
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-key-vault-allows-firewall-rules-settings
+Check: CKV_AZURE_42: "Ensure the key vault is recoverable"
+	PASSED for resource: module.aci.azurerm_key_vault.acr
+	File: /modules/azure/aci/main.tf:85-118
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-the-key-vault-is-recoverable
+Check: CKV_AZURE_110: "Ensure that key vault enables purge protection"
+	PASSED for resource: module.aci.azurerm_key_vault.acr
+	File: /modules/azure/aci/main.tf:85-118
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-that-key-vault-enables-purge-protection
+Check: CKV_AZURE_189: "Ensure that Azure Key Vault disables public network access"
+	PASSED for resource: module.aci.azurerm_key_vault.acr
+	File: /modules/azure/aci/main.tf:85-118
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-189
+Check: CKV_AZURE_111: "Ensure that key vault enables soft delete"
+	PASSED for resource: module.aci.azurerm_key_vault.acr
+	File: /modules/azure/aci/main.tf:85-118
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-that-key-vault-enables-soft-delete
+Check: CKV_AZURE_40: "Ensure that the expiration date is set on all keys"
+	PASSED for resource: module.aci.azurerm_key_vault_key.acr
+	File: /modules/azure/aci/main.tf:120-139
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/set-an-expiration-date-on-all-keys
+Check: CKV_AZURE_245: "Ensure that Azure Container group is deployed into virtual network"
+	PASSED for resource: module.aci.azurerm_container_group.main[0]
+	File: /modules/azure/aci/main.tf:274-329
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azure-245
+Check: CKV_AZURE_98: "Ensure that Azure Container group is deployed into virtual network"
+	PASSED for resource: module.aci.azurerm_container_group.main[0]
+	File: /modules/azure/aci/main.tf:274-329
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-azure-container-container-group-is-deployed-into-virtual-network
+Check: CKV_AZURE_245: "Ensure that Azure Container group is deployed into virtual network"
+	PASSED for resource: module.aci.azurerm_container_group.main[1]
+	File: /modules/azure/aci/main.tf:274-329
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azure-245
+Check: CKV_AZURE_98: "Ensure that Azure Container group is deployed into virtual network"
+	PASSED for resource: module.aci.azurerm_container_group.main[1]
+	File: /modules/azure/aci/main.tf:274-329
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-azure-container-container-group-is-deployed-into-virtual-network
+Check: CKV_AZURE_182: "Ensure that VNET has at least 2 connected DNS Endpoints"
+	PASSED for resource: module.vnet.azurerm_virtual_network.main
+	File: /modules/azure/vnet/main.tf:15-27
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-182
+Check: CKV_AZURE_183: "Ensure that VNET uses local DNS addresses"
+	PASSED for resource: module.vnet.azurerm_virtual_network.main
+	File: /modules/azure/vnet/main.tf:15-27
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-183
+Check: CKV_AZURE_77: "Ensure that UDP Services are restricted from the Internet "
+	PASSED for resource: module.vnet.azurerm_network_security_group.public
+	File: /modules/azure/vnet/main.tf:55-90
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-udp-services-are-restricted-from-the-internet
+Check: CKV_AZURE_9: "Ensure that RDP access is restricted from the internet"
+	PASSED for resource: module.vnet.azurerm_network_security_group.public
+	File: /modules/azure/vnet/main.tf:55-90
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-2
+Check: CKV_AZURE_10: "Ensure that SSH access is restricted from the internet"
+	PASSED for resource: module.vnet.azurerm_network_security_group.public
+	File: /modules/azure/vnet/main.tf:55-90
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-3
+Check: CKV_AZURE_77: "Ensure that UDP Services are restricted from the Internet "
+	PASSED for resource: module.vnet.azurerm_network_security_group.private
+	File: /modules/azure/vnet/main.tf:93-128
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-udp-services-are-restricted-from-the-internet
+Check: CKV_AZURE_9: "Ensure that RDP access is restricted from the internet"
+	PASSED for resource: module.vnet.azurerm_network_security_group.private
+	File: /modules/azure/vnet/main.tf:93-128
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-2
+Check: CKV_AZURE_160: "Ensure that HTTP (port 80) access is restricted from the internet"
+	PASSED for resource: module.vnet.azurerm_network_security_group.private
+	File: /modules/azure/vnet/main.tf:93-128
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-azure-http-port-80-access-from-the-internet-is-restricted
+Check: CKV_AZURE_10: "Ensure that SSH access is restricted from the internet"
+	PASSED for resource: module.vnet.azurerm_network_security_group.private
+	File: /modules/azure/vnet/main.tf:93-128
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-3
+Check: CKV_GCP_49: "Ensure roles do not impersonate or manage Service Accounts used at project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_logs
+	File: /modules/gcp/cloud-run/main.tf:146-150
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-10
+Check: CKV_GCP_41: "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_logs
+	File: /modules/gcp/cloud-run/main.tf:146-150
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-3
+Check: CKV_GCP_46: "Ensure Default Service account is not used at a project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_logs
+	File: /modules/gcp/cloud-run/main.tf:146-150
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-7
+Check: CKV_GCP_117: "Ensure basic roles are not used at project level."
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_logs
+	File: /modules/gcp/cloud-run/main.tf:146-150
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-google-cloud-117
+Check: CKV_GCP_42: "Ensure that Service Account has no Admin privileges"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_logs
+	File: /modules/gcp/cloud-run/main.tf:146-150
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-4
+Check: CKV_GCP_49: "Ensure roles do not impersonate or manage Service Accounts used at project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_metrics
+	File: /modules/gcp/cloud-run/main.tf:152-156
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-10
+Check: CKV_GCP_41: "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_metrics
+	File: /modules/gcp/cloud-run/main.tf:152-156
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-3
+Check: CKV_GCP_46: "Ensure Default Service account is not used at a project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_metrics
+	File: /modules/gcp/cloud-run/main.tf:152-156
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-7
+Check: CKV_GCP_117: "Ensure basic roles are not used at project level."
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_metrics
+	File: /modules/gcp/cloud-run/main.tf:152-156
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-google-cloud-117
+Check: CKV_GCP_42: "Ensure that Service Account has no Admin privileges"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_metrics
+	File: /modules/gcp/cloud-run/main.tf:152-156
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-4
+Check: CKV_GCP_49: "Ensure roles do not impersonate or manage Service Accounts used at project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_trace
+	File: /modules/gcp/cloud-run/main.tf:158-162
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-10
+Check: CKV_GCP_41: "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_trace
+	File: /modules/gcp/cloud-run/main.tf:158-162
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-3
+Check: CKV_GCP_46: "Ensure Default Service account is not used at a project level"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_trace
+	File: /modules/gcp/cloud-run/main.tf:158-162
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-7
+Check: CKV_GCP_117: "Ensure basic roles are not used at project level."
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_trace
+	File: /modules/gcp/cloud-run/main.tf:158-162
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-google-cloud-117
+Check: CKV_GCP_42: "Ensure that Service Account has no Admin privileges"
+	PASSED for resource: module.cloud_run.google_project_iam_member.cloud_run_trace
+	File: /modules/gcp/cloud-run/main.tf:158-162
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/bc-gcp-iam-4
+Check: CKV_GCP_4: "Ensure no HTTPS or SSL proxy load balancers permit SSL policies with weak cipher suites"
+	PASSED for resource: module.cloud_run.google_compute_ssl_policy.modern
+	File: /modules/gcp/cloud-run/main.tf:314-319
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-3
+Check: CKV_GCP_74: "Ensure that private_ip_google_access is enabled for Subnet"
+	PASSED for resource: module.vpc.google_compute_subnetwork.public[0]
+	File: /modules/gcp/vpc/main.tf:37-65
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-subnet-has-a-private-ip-google-access
+Check: CKV_GCP_26: "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network"
+	PASSED for resource: module.vpc.google_compute_subnetwork.public[0]
+	File: /modules/gcp/vpc/main.tf:37-65
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/logging-policies-1/bc-gcp-logging-1
+Check: CKV_GCP_74: "Ensure that private_ip_google_access is enabled for Subnet"
+	PASSED for resource: module.vpc.google_compute_subnetwork.private[0]
+	File: /modules/gcp/vpc/main.tf:68-86
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-subnet-has-a-private-ip-google-access
+Check: CKV_GCP_26: "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network"
+	PASSED for resource: module.vpc.google_compute_subnetwork.private[0]
+	File: /modules/gcp/vpc/main.tf:68-86
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/logging-policies-1/bc-gcp-logging-1
+Check: CKV_GCP_77: "Ensure Google compute firewall ingress does not allow on ftp port"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_internal
+	File: /modules/gcp/vpc/main.tf:130-152
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-ftp-port-20-access
+Check: CKV_GCP_106: "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_internal
+	File: /modules/gcp/vpc/main.tf:130-152
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-http-port-80-access
+Check: CKV_GCP_75: "Ensure Google compute firewall ingress does not allow unrestricted FTP access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_internal
+	File: /modules/gcp/vpc/main.tf:130-152
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-ftp-access
+Check: CKV_GCP_2: "Ensure Google compute firewall ingress does not allow unrestricted ssh access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_internal
+	File: /modules/gcp/vpc/main.tf:130-152
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-1
+Check: CKV_GCP_3: "Ensure Google compute firewall ingress does not allow unrestricted rdp access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_internal
+	File: /modules/gcp/vpc/main.tf:130-152
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-2
+Check: CKV_GCP_88: "Ensure Google compute firewall ingress does not allow unrestricted mysql access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_internal
+	File: /modules/gcp/vpc/main.tf:130-152
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-compute-firewall-ingress-does-not-allow-unrestricted-mysql-access
+Check: CKV_GCP_77: "Ensure Google compute firewall ingress does not allow on ftp port"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_ssh
+	File: /modules/gcp/vpc/main.tf:155-171
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-ftp-port-20-access
+Check: CKV_GCP_106: "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_ssh
+	File: /modules/gcp/vpc/main.tf:155-171
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-http-port-80-access
+Check: CKV_GCP_75: "Ensure Google compute firewall ingress does not allow unrestricted FTP access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_ssh
+	File: /modules/gcp/vpc/main.tf:155-171
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-ftp-access
+Check: CKV_GCP_2: "Ensure Google compute firewall ingress does not allow unrestricted ssh access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_ssh
+	File: /modules/gcp/vpc/main.tf:155-171
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-1
+Check: CKV_GCP_3: "Ensure Google compute firewall ingress does not allow unrestricted rdp access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_ssh
+	File: /modules/gcp/vpc/main.tf:155-171
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-2
+Check: CKV_GCP_88: "Ensure Google compute firewall ingress does not allow unrestricted mysql access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_ssh
+	File: /modules/gcp/vpc/main.tf:155-171
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-compute-firewall-ingress-does-not-allow-unrestricted-mysql-access
+Check: CKV_GCP_77: "Ensure Google compute firewall ingress does not allow on ftp port"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_lb_health_checks
+	File: /modules/gcp/vpc/main.tf:174-193
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-ftp-port-20-access
+Check: CKV_GCP_106: "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_lb_health_checks
+	File: /modules/gcp/vpc/main.tf:174-193
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-http-port-80-access
+Check: CKV_GCP_75: "Ensure Google compute firewall ingress does not allow unrestricted FTP access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_lb_health_checks
+	File: /modules/gcp/vpc/main.tf:174-193
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-ftp-access
+Check: CKV_GCP_2: "Ensure Google compute firewall ingress does not allow unrestricted ssh access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_lb_health_checks
+	File: /modules/gcp/vpc/main.tf:174-193
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-1
+Check: CKV_GCP_3: "Ensure Google compute firewall ingress does not allow unrestricted rdp access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_lb_health_checks
+	File: /modules/gcp/vpc/main.tf:174-193
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-2
+Check: CKV_GCP_88: "Ensure Google compute firewall ingress does not allow unrestricted mysql access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_lb_health_checks
+	File: /modules/gcp/vpc/main.tf:174-193
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-compute-firewall-ingress-does-not-allow-unrestricted-mysql-access
+Check: CKV_GCP_77: "Ensure Google compute firewall ingress does not allow on ftp port"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_https_public
+	File: /modules/gcp/vpc/main.tf:196-211
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-ftp-port-20-access
+Check: CKV_GCP_106: "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_https_public
+	File: /modules/gcp/vpc/main.tf:196-211
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-http-port-80-access
+Check: CKV_GCP_75: "Ensure Google compute firewall ingress does not allow unrestricted FTP access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_https_public
+	File: /modules/gcp/vpc/main.tf:196-211
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-ftp-access
+Check: CKV_GCP_2: "Ensure Google compute firewall ingress does not allow unrestricted ssh access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_https_public
+	File: /modules/gcp/vpc/main.tf:196-211
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-1
+Check: CKV_GCP_3: "Ensure Google compute firewall ingress does not allow unrestricted rdp access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_https_public
+	File: /modules/gcp/vpc/main.tf:196-211
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-2
+Check: CKV_GCP_88: "Ensure Google compute firewall ingress does not allow unrestricted mysql access"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_https_public
+	File: /modules/gcp/vpc/main.tf:196-211
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-compute-firewall-ingress-does-not-allow-unrestricted-mysql-access
+Check: CKV_GCP_77: "Ensure Google compute firewall ingress does not allow on ftp port"
+	PASSED for resource: module.vpc.google_compute_firewall.deny_all
+	File: /modules/gcp/vpc/main.tf:214-227
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-ftp-port-20-access
+Check: CKV_GCP_106: "Ensure Google compute firewall ingress does not allow unrestricted http port 80 access"
+	PASSED for resource: module.vpc.google_compute_firewall.deny_all
+	File: /modules/gcp/vpc/main.tf:214-227
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-http-port-80-access
+Check: CKV_GCP_75: "Ensure Google compute firewall ingress does not allow unrestricted FTP access"
+	PASSED for resource: module.vpc.google_compute_firewall.deny_all
+	File: /modules/gcp/vpc/main.tf:214-227
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-ftp-access
+Check: CKV_GCP_2: "Ensure Google compute firewall ingress does not allow unrestricted ssh access"
+	PASSED for resource: module.vpc.google_compute_firewall.deny_all
+	File: /modules/gcp/vpc/main.tf:214-227
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-1
+Check: CKV_GCP_3: "Ensure Google compute firewall ingress does not allow unrestricted rdp access"
+	PASSED for resource: module.vpc.google_compute_firewall.deny_all
+	File: /modules/gcp/vpc/main.tf:214-227
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-networking-2
+Check: CKV_GCP_88: "Ensure Google compute firewall ingress does not allow unrestricted mysql access"
+	PASSED for resource: module.vpc.google_compute_firewall.deny_all
+	File: /modules/gcp/vpc/main.tf:214-227
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-compute-firewall-ingress-does-not-allow-unrestricted-mysql-access
+Check: CKV_GCP_74: "Ensure that private_ip_google_access is enabled for Subnet"
+	PASSED for resource: module.vpc.google_compute_subnetwork.public[1]
+	File: /modules/gcp/vpc/main.tf:37-65
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-subnet-has-a-private-ip-google-access
+Check: CKV_GCP_26: "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network"
+	PASSED for resource: module.vpc.google_compute_subnetwork.public[1]
+	File: /modules/gcp/vpc/main.tf:37-65
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/logging-policies-1/bc-gcp-logging-1
+Check: CKV_GCP_74: "Ensure that private_ip_google_access is enabled for Subnet"
+	PASSED for resource: module.vpc.google_compute_subnetwork.private[1]
+	File: /modules/gcp/vpc/main.tf:68-86
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-gcp-subnet-has-a-private-ip-google-access
+Check: CKV_GCP_26: "Ensure that VPC Flow Logs is enabled for every subnet in a VPC Network"
+	PASSED for resource: module.vpc.google_compute_subnetwork.private[1]
+	File: /modules/gcp/vpc/main.tf:68-86
+	Calling File: /gcp/main.tf:37-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/logging-policies-1/bc-gcp-logging-1
+Check: CKV2_GCP_8: "Ensure that Cloud KMS Key Rings are not anonymously or publicly accessible"
+	PASSED for resource: google_kms_key_ring.security
+	File: /gcp/main.tf:456-459
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-iam-policies/ensure-gcp-cloud-kms-key-rings-is-not-publicly-accessible-1
+Check: CKV2_GCP_12: "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_internal
+	File: /modules/gcp/vpc/main.tf:130-152
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-access-to-all-ports
+Check: CKV2_GCP_12: "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_ssh
+	File: /modules/gcp/vpc/main.tf:155-171
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-access-to-all-ports
+Check: CKV2_GCP_12: "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_lb_health_checks
+	File: /modules/gcp/vpc/main.tf:174-193
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-access-to-all-ports
+Check: CKV2_GCP_12: "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
+	PASSED for resource: module.vpc.google_compute_firewall.allow_https_public
+	File: /modules/gcp/vpc/main.tf:196-211
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-access-to-all-ports
+Check: CKV2_GCP_12: "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
+	PASSED for resource: module.vpc.google_compute_firewall.deny_all
+	File: /modules/gcp/vpc/main.tf:214-227
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-gcp-google-compute-firewall-ingress-does-not-allow-unrestricted-access-to-all-ports
+Check: CKV2_GCP_18: "Ensure GCP network defines a firewall and does not use the default firewall"
+	PASSED for resource: module.vpc.google_compute_network.main
+	File: /modules/gcp/vpc/main.tf:13-21
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-gcp-2-18
+Check: CKV2_GCP_38: "Ensure GCP compute global forwarding rule does not use HTTP proxies with EXTERNAL load balancing scheme"
+	PASSED for resource: module.cloud_run.google_compute_global_forwarding_rule.https
+	File: /modules/gcp/cloud-run/main.tf:322-330
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-google-cloud-2-38
+Check: CKV2_GCP_38: "Ensure GCP compute global forwarding rule does not use HTTP proxies with EXTERNAL load balancing scheme"
+	PASSED for resource: module.cloud_run.google_compute_global_forwarding_rule.http
+	File: /modules/gcp/cloud-run/main.tf:350-358
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/bc-google-cloud-2-38
+Check: CKV2_GCP_6: "Ensure that Cloud KMS cryptokeys are not anonymously or publicly accessible"
+	PASSED for resource: google_kms_crypto_key.security_logs
+	File: /gcp/main.tf:461-477
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-general-policies/ensure-that-cloud-kms-cryptokeys-are-not-anonymously-or-publicly-accessible
+Check: CKV2_AWS_71: "Ensure AWS ACM Certificate domain name does not include wildcards"
+	PASSED for resource: module.ecs.aws_acm_certificate.app
+	File: /modules/aws/ecs/main.tf:239-256
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-2-71
+Check: CKV_AZURE_120: "Ensure that Application Gateway enables WAF"
+	PASSED for resource: module.aci.azurerm_application_gateway.main
+	File: /modules/azure/aci/main.tf:160-271
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-application-gateway-enables-waf
+Check: CKV2_AWS_74: "Ensure AWS Load Balancers use strong ciphers"
+	PASSED for resource: module.ecs.aws_lb_listener.app_https
+	File: /modules/aws/ecs/main.tf:417-434
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-2-74
+Check: CKV2_AWS_74: "Ensure AWS Load Balancers use strong ciphers"
+	PASSED for resource: module.ecs.aws_lb_listener.app_http_redirect
+	File: /modules/aws/ecs/main.tf:437-457
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-2-74
+Check: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+	PASSED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning
+Check: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+	PASSED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+	PASSED for resource: module.vpc.aws_route_table.public
+	File: /modules/aws/vpc/main.tf:89-102
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+	PASSED for resource: module.vpc.aws_route_table.private
+	File: /modules/aws/vpc/main.tf:105-120
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+	PASSED for resource: module.vpc.aws_route_table.public
+	File: /modules/aws/vpc/main.tf:89-102
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+	PASSED for resource: module.vpc.aws_route_table.private
+	File: /modules/aws/vpc/main.tf:105-120
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+Check: CKV2_AZURE_31: "Ensure VNET subnet is configured with a Network Security Group (NSG)"
+	PASSED for resource: module.vnet.azurerm_subnet.public
+	File: /modules/azure/vnet/main.tf:30-35
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-31
+Check: CKV2_AZURE_31: "Ensure VNET subnet is configured with a Network Security Group (NSG)"
+	PASSED for resource: module.vnet.azurerm_subnet.private
+	File: /modules/azure/vnet/main.tf:38-52
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-31
+Check: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+	PASSED for resource: module.ecs.aws_security_group.ecs_tasks
+	File: /modules/aws/ecs/main.tf:588-631
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+Check: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+	PASSED for resource: module.ecs.aws_security_group.alb
+	File: /modules/aws/ecs/main.tf:525-536
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+Check: CKV2_AWS_20: "Ensure that ALB redirects HTTP requests into HTTPS ones"
+	PASSED for resource: module.ecs.aws_lb.app
+	File: /modules/aws/ecs/main.tf:185-209
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-alb-redirects-http-requests-into-https-ones
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.ecs.aws_iam_role.ecs_execution_role
+	File: /modules/aws/ecs/main.tf:634-655
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.ecs.aws_iam_role_policy_attachment.ecs_execution_role_policy
+	File: /modules/aws/ecs/main.tf:657-660
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.ecs.aws_iam_role.ecs_task_role
+	File: /modules/aws/ecs/main.tf:663-684
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_28: "Ensure public facing ALB are protected by WAF"
+	PASSED for resource: module.ecs.aws_lb.app
+	File: /modules/aws/ecs/main.tf:185-209
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-public-facing-alb-are-protected-by-waf
+Check: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+	PASSED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone
+Check: CKV_AWS_378: "Ensure AWS Load Balancer doesn't use HTTP protocol"
+	PASSED for resource: module.ecs.aws_lb_target_group.app
+	File: /modules/aws/ecs/main.tf:212-236
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-378
+Check: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+	PASSED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest
+Check: CKV2_AWS_19: "Ensure that all EIP addresses allocated to a VPC are attached to EC2 instances"
+	PASSED for resource: module.vpc.aws_eip.nat
+	File: /modules/aws/vpc/main.tf:59-70
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-all-eip-addresses-allocated-to-a-vpc-are-attached-to-ec2-instances
+Check: CKV_AWS_57: "S3 Bucket has an ACL defined which allows public WRITE access."
+	PASSED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-2-acl-write-permissions-everyone
+Check: CKV2_AWS_64: "Ensure KMS key Policy is defined"
+	PASSED for resource: module.ecs.aws_kms_key.logs
+	File: /modules/aws/ecs/main.tf:460-500
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64
+Check: CKV_AWS_103: "Ensure that load balancer is using at least TLS 1.2"
+	PASSED for resource: module.ecs.aws_lb_listener.app_https
+	File: /modules/aws/ecs/main.tf:417-434
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-43
+Check: CKV_AWS_103: "Ensure that load balancer is using at least TLS 1.2"
+	PASSED for resource: module.ecs.aws_lb_listener.app_http_redirect
+	File: /modules/aws/ecs/main.tf:437-457
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-43
+Check: CKV_GCP_62: "Bucket should log access"
+	FAILED for resource: google_storage_bucket.audit_logs
+	File: /gcp/main.tf:428-453
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-storage-gcs-policies/bc-gcp-logging-2
+Check: CKV_AZURE_237: "Ensure dedicated data endpoints are enabled."
+	FAILED for resource: module.aci.azurerm_container_registry.main
+	File: /modules/azure/aci/main.tf:2-68
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-237
+Check: CKV_AZURE_112: "Ensure that key vault key is backed by HSM"
+	FAILED for resource: module.aci.azurerm_key_vault_key.acr
+	File: /modules/azure/aci/main.tf:120-139
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-that-key-vault-key-is-backed-by-hsm
+Check: CKV_AZURE_218: "Ensure Application Gateway defines secure protocols for in transit communication"
+	FAILED for resource: module.aci.azurerm_application_gateway.main
+	File: /modules/azure/aci/main.tf:160-271
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-218
+Check: CKV_AZURE_217: "Ensure Azure Application gateways listener that allow connection requests over HTTP"
+	FAILED for resource: module.aci.azurerm_application_gateway.main
+	File: /modules/azure/aci/main.tf:160-271
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-217
+Check: CKV_AZURE_235: "Ensure that Azure container environment variables are configured with secure values only"
+	FAILED for resource: module.aci.azurerm_container_group.main[0]
+	File: /modules/azure/aci/main.tf:274-329
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-235
+Check: CKV_AZURE_235: "Ensure that Azure container environment variables are configured with secure values only"
+	FAILED for resource: module.aci.azurerm_container_group.main[1]
+	File: /modules/azure/aci/main.tf:274-329
+	Calling File: /azure/main.tf:32-49
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-235
+Check: CKV_AZURE_160: "Ensure that HTTP (port 80) access is restricted from the internet"
+	FAILED for resource: module.vnet.azurerm_network_security_group.public
+	File: /modules/azure/vnet/main.tf:55-90
+	Calling File: /azure/main.tf:20-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-azure-http-port-80-access-from-the-internet-is-restricted
+Check: CKV_GCP_73: "Ensure Cloud Armor prevents message lookup in Log4j2. See CVE-2021-44228 aka log4jshell"
+	FAILED for resource: module.cloud_run.google_compute_security_policy.policy
+	File: /modules/gcp/cloud-run/main.tf:393-495
+	Calling File: /gcp/main.tf:53-75
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/google-cloud-networking-policies/ensure-cloud-armor-prevents-message-lookup-in-log4j2
+Check: CKV2_GCP_4: "Ensure that retention policies on log buckets are configured using Bucket Lock"
+	FAILED for resource: google_logging_project_sink.security_sink
+	File: /gcp/main.tf:324-341
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/google-cloud-policies/logging-policies-1/ensure-that-retention-policies-on-log-buckets-are-configured-using-bucket-lock
+Check: CKV2_AZURE_28: "Ensure Container Instance is configured with managed identity"
+	FAILED for resource: module.aci.azurerm_container_group.main[0]
+	File: /modules/azure/aci/main.tf:274-329
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-28
+Check: CKV2_AZURE_28: "Ensure Container Instance is configured with managed identity"
+	FAILED for resource: module.aci.azurerm_container_group.main[1]
+	File: /modules/azure/aci/main.tf:274-329
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-28
+Check: CKV2_AZURE_32: "Ensure private endpoint is configured to key vault"
+	FAILED for resource: module.aci.azurerm_key_vault.acr
+	File: /modules/azure/aci/main.tf:85-118
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-32
+Check: CKV_AWS_144: "Ensure that S3 bucket has cross-region replication enabled"
+	FAILED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled
+Check: CKV2_AWS_61: "Ensure that an S3 bucket has a lifecycle configuration"
+	FAILED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
+Check: CKV2_AWS_12: "Ensure the default security group of every VPC restricts all traffic"
+	FAILED for resource: module.vpc.aws_vpc.main
+	File: /modules/aws/vpc/main.tf:2-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4
+Check: CKV2_AWS_11: "Ensure VPC flow logging is enabled in all VPCs"
+	FAILED for resource: module.vpc.aws_vpc.main
+	File: /modules/aws/vpc/main.tf:2-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging
+Check: CKV2_AWS_31: "Ensure WAF2 has a Logging Configuration"
+	FAILED for resource: module.ecs.aws_wafv2_web_acl.app
+	File: /modules/aws/ecs/main.tf:259-408
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-logging-33
+Check: CKV2_AWS_62: "Ensure S3 buckets should have event notifications enabled"
+	FAILED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62
+Check: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+	FAILED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
+Check: CKV_AWS_145: "Ensure that S3 buckets are encrypted with KMS by default"
+	FAILED for resource: module.ecs.aws_s3_bucket.alb_logs
+	File: /modules/aws/ecs/main.tf:98-107
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+Check: CKV2_AWS_76: "Ensure AWS ALB attached WAFv2 WebACL is configured with AMR for Log4j Vulnerability"
+	FAILED for resource: module.ecs.aws_lb.app
+	File: /modules/aws/ecs/main.tf:185-209
+

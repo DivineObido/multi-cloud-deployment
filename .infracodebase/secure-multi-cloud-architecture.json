@@ -1,0 +1,168 @@
+{
+  "nodes": [
+    {
+      "id": "cloudflare-lb",
+      "label": "Cloudflare Load Balancer",
+      "subtitle": "Global Traffic Router",
+      "icon": "/icons/saas/cdn/cloudflare.png"
+    },
+    {
+      "id": "cloudflare-dns",
+      "label": "Cloudflare DNS",
+      "subtitle": "app.example.com",
+      "icon": "/icons/gcp/network/dns.png"
+    },
+    {
+      "id": "aws-waf",
+      "label": "AWS WAF v2",
+      "subtitle": "OWASP + Rate Limiting",
+      "icon": "/icons/azure/networking/application-gateway-waf.png"
+    },
+    {
+      "id": "aws-alb",
+      "label": "Application Load Balancer",
+      "subtitle": "HTTPS + Access Logs",
+      "icon": "/icons/aws/network/elb-classic-load-balancer.png"
+    },
+    {
+      "id": "aws-ecs",
+      "label": "ECS Fargate Service",
+      "subtitle": "Auto-scaling Containers",
+      "icon": "/icons/aws/aws.png"
+    },
+    {
+      "id": "azure-waf",
+      "label": "Azure WAF",
+      "subtitle": "OWASP 3.2 Prevention",
+      "icon": "/icons/azure/security/azure-firewall-web-category.png"
+    },
+    {
+      "id": "azure-appgw",
+      "label": "Application Gateway",
+      "subtitle": "WAF_v2 + SSL Termination",
+      "icon": "/icons/azure/networking/application-gateway.png"
+    },
+    {
+      "id": "azure-aci",
+      "label": "Container Instances",
+      "subtitle": "Private Subnet Deployment",
+      "icon": "/icons/azure/compute/azure-hdinsight-on-aks.png"
+    },
+    {
+      "id": "gcp-armor",
+      "label": "Cloud Armor",
+      "subtitle": "DDoS + Geo Blocking",
+      "icon": "/icons/gcp/network/armor.png"
+    },
+    {
+      "id": "gcp-lb",
+      "label": "Global Load Balancer",
+      "subtitle": "HTTPS + Security Headers",
+      "icon": "/icons/azure/networking/load-balancer.png"
+    },
+    {
+      "id": "gcp-cloudrun",
+      "label": "Cloud Run Service",
+      "subtitle": "Serverless Containers",
+      "icon": "/icons/gcp/compute/run.png"
+    },
+    {
+      "id": "aws-kms",
+      "label": "KMS",
+      "subtitle": "Log Encryption",
+      "icon": "/icons/aws/security/key-management-service.png"
+    },
+    {
+      "id": "azure-keyvault",
+      "label": "Key Vault",
+      "subtitle": "ACR Encryption",
+      "icon": "/icons/azure/security/azure-key-vault.png"
+    },
+    {
+      "id": "gcp-kms",
+      "label": "Cloud KMS",
+      "subtitle": "Bucket Encryption",
+      "icon": "/icons/gcp/security/key-management-service.png"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "cloudflare-dns",
+      "target": "cloudflare-lb",
+      "label": "resolves to"
+    },
+    {
+      "id": "e2",
+      "source": "cloudflare-lb",
+      "target": "aws-waf",
+      "label": "routes to AWS (US West)"
+    },
+    {
+      "id": "e3",
+      "source": "cloudflare-lb",
+      "target": "azure-waf",
+      "label": "routes to Azure (EU West)"
+    },
+    {
+      "id": "e4",
+      "source": "cloudflare-lb",
+      "target": "gcp-armor",
+      "label": "routes to GCP (US Central)"
+    },
+    {
+      "id": "e5",
+      "source": "aws-waf",
+      "target": "aws-alb",
+      "label": "protects"
+    },
+    {
+      "id": "e6",
+      "source": "aws-alb",
+      "target": "aws-ecs",
+      "label": "forwards to"
+    },
+    {
+      "id": "e7",
+      "source": "azure-waf",
+      "target": "azure-appgw",
+      "label": "embedded in"
+    },
+    {
+      "id": "e8",
+      "source": "azure-appgw",
+      "target": "azure-aci",
+      "label": "forwards to"
+    },
+    {
+      "id": "e9",
+      "source": "gcp-armor",
+      "target": "gcp-lb",
+      "label": "protects"
+    },
+    {
+      "id": "e10",
+      "source": "gcp-lb",
+      "target": "gcp-cloudrun",
+      "label": "forwards to"
+    },
+    {
+      "id": "e11",
+      "source": "aws-kms",
+      "target": "aws-ecs",
+      "label": "encrypts logs"
+    },
+    {
+      "id": "e12",
+      "source": "azure-keyvault",
+      "target": "azure-aci",
+      "label": "encrypts registry"
+    },
+    {
+      "id": "e13",
+      "source": "gcp-kms",
+      "target": "gcp-cloudrun",
+      "label": "encrypts storage"
+    }
+  ]
+}

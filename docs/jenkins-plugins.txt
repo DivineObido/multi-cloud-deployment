@@ -1,0 +1,50 @@
+# Required Jenkins Plugins for Multi-Cloud Pipeline
+
+# Core Plugins
+pipeline-stage-view
+workflow-aggregator
+pipeline-utility-steps
+blueocean
+
+# Docker Support
+docker-workflow
+docker-pipeline-plugin
+
+# Cloud Provider Plugins
+amazon-ecs
+azure-cli
+
+# Credentials Management
+credentials
+credentials-binding
+plain-credentials
+
+# Source Control
+git
+github
+github-branch-source
+
+# Build Tools
+nodejs
+jq
+
+# Notifications
+slack
+
+# Utilities
+build-timeout
+timestamper
+ws-cleanup
+ant
+gradle
+
+# Security
+matrix-auth
+ldap
+
+# Monitoring
+monitoring
+disk-usage
+
+# Configuration as Code
+configuration-as-code

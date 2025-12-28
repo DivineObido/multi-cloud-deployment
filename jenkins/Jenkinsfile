@@ -1,0 +1,337 @@
+pipeline {
+    agent any
+
+    environment {
+        // Docker Registry Configuration
+        DOCKER_REGISTRY = 'your-registry'
+        DOCKER_REPOSITORY = 'multi-cloud-app'
+        DOCKER_TAG = "${BUILD_NUMBER}"
+
+        // AWS Configuration
+        AWS_REGION = 'us-west-2'
+        AWS_ECS_CLUSTER = 'prod-cluster'
+        AWS_ECS_SERVICE = 'prod-web-app-service'
+
+        // Azure Configuration
+        AZURE_RESOURCE_GROUP = 'prod-multi-cloud-app-rg'
+        AZURE_CONTAINER_REGISTRY = credentials('azure-container-registry')
+        AZURE_SUBSCRIPTION_ID = credentials('azure-subscription-id')
+
+        // Application Configuration
+        APP_NAME = 'web-app'
+        ENVIRONMENT = 'prod'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 30, unit: 'MINUTES')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+                script {
+                    env.GIT_COMMIT_SHORT = sh(
+                        script: 'git rev-parse --short HEAD',
+                        returnStdout: true
+                    ).trim()
+                    env.IMAGE_TAG = "${env.GIT_COMMIT_SHORT}-${env.BUILD_NUMBER}"
+                }
+            }
+        }
+
+        stage('Build Application') {
+            steps {
+                dir('app') {
+                    sh '''
+                        echo "Building Docker image..."
+                        docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${IMAGE_TAG} .
+                        docker tag ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:latest
+                    '''
+                }
+            }
+        }
+
+        stage('Test Application') {
+            steps {
+                dir('app') {
+                    sh '''
+                        echo "Running application tests..."
+                        # Install dependencies
+                        npm install
+
+                        # Run tests
+                        npm test || true
+
+                        # Test Docker image
+                        docker run -d --name test-container -p 3001:3000 ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${IMAGE_TAG}
+                        sleep 10
+
+                        # Health check
+                        curl -f http://localhost:3001/health || exit 1
+
+                        # Cleanup
+                        docker stop test-container
+                        docker rm test-container
+                    '''
+                }
+            }
+        }
+
+        stage('Push to Registries') {
+            parallel {
+                stage('Push to AWS ECR') {
+                    steps {
+                        withCredentials([
+                            [$class: 'AmazonWebServicesCredentialsBinding',
+                             credentialsId: 'aws-credentials']
+                        ]) {
+                            sh '''
+                                echo "Pushing to AWS ECR..."
+
+                                # Get ECR login token
+                                aws ecr get-login-password --region ${AWS_REGION} | \
+                                    docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
+
+                                # Push image
+                                docker push ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${IMAGE_TAG}
+                                docker push ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:latest
+                            '''
+                        }
+                    }
+                }
+
+                stage('Push to Azure ACR') {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'azure-service-principal',
+                                           usernameVariable: 'AZURE_CLIENT_ID',
+                                           passwordVariable: 'AZURE_CLIENT_SECRET'),
+                            string(credentialsId: 'azure-tenant-id', variable: 'AZURE_TENANT_ID')
+                        ]) {
+                            sh '''
+                                echo "Pushing to Azure ACR..."
+
+                                # Login to Azure
+                                az login --service-principal \
+                                    -u $AZURE_CLIENT_ID \
+                                    -p $AZURE_CLIENT_SECRET \
+                                    --tenant $AZURE_TENANT_ID
+
+                                # Login to ACR
+                                az acr login --name ${AZURE_CONTAINER_REGISTRY}
+
+                                # Tag for ACR
+                                docker tag ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${IMAGE_TAG} \
+                                    ${AZURE_CONTAINER_REGISTRY}.azurecr.io/${DOCKER_REPOSITORY}:${IMAGE_TAG}
+
+                                # Push to ACR
+                                docker push ${AZURE_CONTAINER_REGISTRY}.azurecr.io/${DOCKER_REPOSITORY}:${IMAGE_TAG}
+                            '''
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to Clouds') {
+            parallel {
+                stage('Deploy to AWS ECS') {
+                    steps {
+                        withCredentials([
+                            [$class: 'AmazonWebServicesCredentialsBinding',
+                             credentialsId: 'aws-credentials']
+                        ]) {
+                            dir('terraform/aws') {
+                                sh '''
+                                    echo "Deploying to AWS ECS..."
+
+                                    # Update task definition with new image
+                                    aws ecs describe-task-definition \
+                                        --task-definition ${ENVIRONMENT}-${APP_NAME} \
+                                        --region ${AWS_REGION} \
+                                        --query taskDefinition > task-definition.json
+
+                                    # Update image in task definition
+                                    jq --arg IMAGE "${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${IMAGE_TAG}" \
+                                        '.containerDefinitions[0].image = $IMAGE' \
+                                        task-definition.json > updated-task-definition.json
+
+                                    # Register new task definition
+                                    aws ecs register-task-definition \
+                                        --cli-input-json file://updated-task-definition.json \
+                                        --region ${AWS_REGION}
+
+                                    # Update service
+                                    aws ecs update-service \
+                                        --cluster ${AWS_ECS_CLUSTER} \
+                                        --service ${AWS_ECS_SERVICE} \
+                                        --task-definition ${ENVIRONMENT}-${APP_NAME} \
+                                        --region ${AWS_REGION}
+
+                                    # Wait for deployment to complete
+                                    aws ecs wait services-stable \
+                                        --cluster ${AWS_ECS_CLUSTER} \
+                                        --services ${AWS_ECS_SERVICE} \
+                                        --region ${AWS_REGION}
+                                '''
+                            }
+                        }
+                    }
+                }
+
+                stage('Deploy to Azure ACI') {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'azure-service-principal',
+                                           usernameVariable: 'AZURE_CLIENT_ID',
+                                           passwordVariable: 'AZURE_CLIENT_SECRET'),
+                            string(credentialsId: 'azure-tenant-id', variable: 'AZURE_TENANT_ID')
+                        ]) {
+                            dir('terraform/azure') {
+                                sh '''
+                                    echo "Deploying to Azure Container Instances..."
+
+                                    # Login to Azure
+                                    az login --service-principal \
+                                        -u $AZURE_CLIENT_ID \
+                                        -p $AZURE_CLIENT_SECRET \
+                                        --tenant $AZURE_TENANT_ID
+
+                                    # Update container groups with new image
+                                    CONTAINER_GROUPS=$(az container list \
+                                        --resource-group ${AZURE_RESOURCE_GROUP} \
+                                        --query "[].name" -o tsv)
+
+                                    for GROUP in $CONTAINER_GROUPS; do
+                                        echo "Updating container group: $GROUP"
+
+                                        # Get current container group configuration
+                                        az container show \
+                                            --resource-group ${AZURE_RESOURCE_GROUP} \
+                                            --name $GROUP \
+                                            --query "{location:location,osType:osType,containers:containers}" > container-config.json
+
+                                        # Update image in configuration
+                                        jq --arg IMAGE "${AZURE_CONTAINER_REGISTRY}.azurecr.io/${DOCKER_REPOSITORY}:${IMAGE_TAG}" \
+                                            '.containers[0].image = $IMAGE' \
+                                            container-config.json > updated-container-config.json
+
+                                        # Delete existing container group
+                                        az container delete \
+                                            --resource-group ${AZURE_RESOURCE_GROUP} \
+                                            --name $GROUP \
+                                            --yes
+
+                                        # Wait for deletion to complete
+                                        sleep 30
+
+                                        # Recreate container group with new image
+                                        az container create \
+                                            --resource-group ${AZURE_RESOURCE_GROUP} \
+                                            --name $GROUP \
+                                            --file updated-container-config.json
+                                    done
+                                '''
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Health Check & Validation') {
+            steps {
+                script {
+                    parallel([
+                        'AWS Health Check': {
+                            sh '''
+                                echo "Checking AWS deployment health..."
+                                AWS_ENDPOINT=$(cd terraform/aws && terraform output -raw aws_endpoint)
+
+                                for i in {1..10}; do
+                                    if curl -f "${AWS_ENDPOINT}/health"; then
+                                        echo "AWS deployment is healthy"
+                                        break
+                                    fi
+                                    echo "Attempt $i failed, retrying..."
+                                    sleep 30
+                                done
+                            '''
+                        },
+                        'Azure Health Check': {
+                            sh '''
+                                echo "Checking Azure deployment health..."
+                                AZURE_ENDPOINT=$(cd terraform/azure && terraform output -raw azure_endpoint)
+
+                                for i in {1..10}; do
+                                    if curl -f "${AZURE_ENDPOINT}/health"; then
+                                        echo "Azure deployment is healthy"
+                                        break
+                                    fi
+                                    echo "Attempt $i failed, retrying..."
+                                    sleep 30
+                                done
+                            '''
+                        }
+                    ])
+                }
+            }
+        }
+
+        stage('Update Traffic Routing') {
+            steps {
+                dir('traffic-router') {
+                    sh '''
+                        echo "Updating traffic routing configuration..."
+                        # This would update DNS routing based on health checks
+                        # Implementation depends on your DNS provider
+                        ./update-routing.sh
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up Docker images
+            sh '''
+                docker rmi ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:${IMAGE_TAG} || true
+                docker rmi ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}:latest || true
+                docker system prune -f
+            '''
+
+            // Archive artifacts
+            archiveArtifacts artifacts: 'terraform/**/*.tf', allowEmptyArchive: true
+        }
+
+        success {
+            echo 'Multi-cloud deployment completed successfully!'
+            slackSend(
+                channel: '#deployments',
+                color: 'good',
+                message: "✅ Multi-cloud deployment successful for build ${BUILD_NUMBER}"
+            )
+        }
+
+        failure {
+            echo 'Multi-cloud deployment failed!'
+            slackSend(
+                channel: '#deployments',
+                color: 'danger',
+                message: "❌ Multi-cloud deployment failed for build ${BUILD_NUMBER}"
+            )
+        }
+
+        unstable {
+            echo 'Multi-cloud deployment completed with warnings!'
+            slackSend(
+                channel: '#deployments',
+                color: 'warning',
+                message: "⚠️ Multi-cloud deployment completed with warnings for build ${BUILD_NUMBER}"
+            )
+        }
+    }
+}

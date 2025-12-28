@@ -1,0 +1,264 @@
+{
+  "nodes": [
+    {
+      "id": "cloudflare",
+      "label": "Global Load Balancer",
+      "subtitle": "Cloudflare DNS + LB",
+      "icon": "/icons/saas/cdn/cloudflare.png"
+    },
+    {
+      "id": "aws-cloud",
+      "label": "AWS Cloud",
+      "subtitle": "us-west-2",
+      "icon": "/icons/aws/aws.png"
+    },
+    {
+      "id": "azure-cloud",
+      "label": "Azure Cloud",
+      "subtitle": "eastus",
+      "icon": "/icons/azure/azure.png"
+    },
+    {
+      "id": "gcp-cloud",
+      "label": "GCP Cloud",
+      "subtitle": "us-central1",
+      "icon": "/icons/gcp/gcp.png"
+    },
+    {
+      "id": "aws-vpc",
+      "label": "VPC",
+      "subtitle": "10.0.0.0/16",
+      "icon": "/icons/aws/network/vpc.png"
+    },
+    {
+      "id": "aws-waf",
+      "label": "AWS WAF v2",
+      "subtitle": "OWASP + Rate Limiting",
+      "icon": "/icons/aws/security/waf.png"
+    },
+    {
+      "id": "aws-ecs",
+      "label": "ECS Fargate",
+      "subtitle": "Container Service",
+      "icon": "/icons/aws/compute/fargate.png"
+    },
+    {
+      "id": "aws-kms",
+      "label": "KMS",
+      "subtitle": "Encryption at Rest",
+      "icon": "/icons/aws/security/key-management-service.png"
+    },
+    {
+      "id": "azure-vnet",
+      "label": "Virtual Network",
+      "subtitle": "10.1.0.0/16",
+      "icon": "/icons/azure/networking/virtual-network.png"
+    },
+    {
+      "id": "azure-appgw",
+      "label": "Application Gateway",
+      "subtitle": "WAF v2 + SSL",
+      "icon": "/icons/azure/networking/application-gateway.png"
+    },
+    {
+      "id": "azure-aci",
+      "label": "Container Instances",
+      "subtitle": "Private Deployment",
+      "icon": "/icons/azure/compute/container.png"
+    },
+    {
+      "id": "azure-keyvault",
+      "label": "Key Vault",
+      "subtitle": "HSM + Encryption",
+      "icon": "/icons/azure/security/key-vault.png"
+    },
+    {
+      "id": "azure-acr",
+      "label": "Container Registry",
+      "subtitle": "Geo-replicated + Encrypted",
+      "icon": "/icons/azure/compute/container-registry.png"
+    },
+    {
+      "id": "gcp-vpc",
+      "label": "VPC Network",
+      "subtitle": "10.2.0.0/16",
+      "icon": "/icons/gcp/network/network.png"
+    },
+    {
+      "id": "gcp-cloudrun",
+      "label": "Cloud Run",
+      "subtitle": "Serverless Containers",
+      "icon": "/icons/gcp/compute/run.png"
+    },
+    {
+      "id": "gcp-armor",
+      "label": "Cloud Armor",
+      "subtitle": "DDoS + Bot Protection",
+      "icon": "/icons/gcp/network/armor.png"
+    },
+    {
+      "id": "gcp-kms",
+      "label": "Cloud KMS",
+      "subtitle": "90-day Key Rotation",
+      "icon": "/icons/gcp/security/key-management-service.png"
+    },
+    {
+      "id": "docker",
+      "label": "Docker Registry",
+      "subtitle": "Container Images",
+      "icon": "/icons/onprem/container/docker.png"
+    },
+    {
+      "id": "jenkins",
+      "label": "Jenkins CI/CD",
+      "subtitle": "Build & Deploy Pipeline",
+      "icon": "/icons/onprem/ci/jenkins.png"
+    }
+  ],
+  "edges": [
+    {
+      "id": "cf-to-clouds",
+      "source": "cloudflare",
+      "target": "aws-cloud",
+      "label": "routes traffic"
+    },
+    {
+      "id": "cf-to-azure",
+      "source": "cloudflare",
+      "target": "azure-cloud",
+      "label": "routes traffic"
+    },
+    {
+      "id": "cf-to-gcp",
+      "source": "cloudflare",
+      "target": "gcp-cloud",
+      "label": "routes traffic"
+    },
+    {
+      "id": "aws-contains-vpc",
+      "source": "aws-cloud",
+      "target": "aws-vpc",
+      "label": "contains"
+    },
+    {
+      "id": "aws-vpc-waf",
+      "source": "aws-vpc",
+      "target": "aws-waf",
+      "label": "protected by"
+    },
+    {
+      "id": "aws-waf-ecs",
+      "source": "aws-waf",
+      "target": "aws-ecs",
+      "label": "protects"
+    },
+    {
+      "id": "aws-ecs-kms",
+      "source": "aws-ecs",
+      "target": "aws-kms",
+      "label": "encrypted by"
+    },
+    {
+      "id": "azure-contains-vnet",
+      "source": "azure-cloud",
+      "target": "azure-vnet",
+      "label": "contains"
+    },
+    {
+      "id": "azure-vnet-appgw",
+      "source": "azure-vnet",
+      "target": "azure-appgw",
+      "label": "protected by"
+    },
+    {
+      "id": "azure-appgw-aci",
+      "source": "azure-appgw",
+      "target": "azure-aci",
+      "label": "routes to"
+    },
+    {
+      "id": "azure-aci-keyvault",
+      "source": "azure-aci",
+      "target": "azure-keyvault",
+      "label": "encrypted by"
+    },
+    {
+      "id": "azure-aci-acr",
+      "source": "azure-aci",
+      "target": "azure-acr",
+      "label": "pulls from"
+    },
+    {
+      "id": "gcp-contains-vpc",
+      "source": "gcp-cloud",
+      "target": "gcp-vpc",
+      "label": "contains"
+    },
+    {
+      "id": "gcp-vpc-armor",
+      "source": "gcp-vpc",
+      "target": "gcp-armor",
+      "label": "protected by"
+    },
+    {
+      "id": "gcp-armor-cloudrun",
+      "source": "gcp-armor",
+      "target": "gcp-cloudrun",
+      "label": "protects"
+    },
+    {
+      "id": "gcp-cloudrun-kms",
+      "source": "gcp-cloudrun",
+      "target": "gcp-kms",
+      "label": "encrypted by"
+    },
+    {
+      "id": "jenkins-to-docker",
+      "source": "jenkins",
+      "target": "docker",
+      "label": "builds images"
+    },
+    {
+      "id": "jenkins-to-aws",
+      "source": "jenkins",
+      "target": "aws-ecs",
+      "label": "deploys to"
+    },
+    {
+      "id": "jenkins-to-azure",
+      "source": "jenkins",
+      "target": "azure-aci",
+      "label": "deploys to"
+    },
+    {
+      "id": "jenkins-to-gcp",
+      "source": "jenkins",
+      "target": "gcp-cloudrun",
+      "label": "deploys to"
+    },
+    {
+      "id": "docker-to-acr",
+      "source": "docker",
+      "target": "azure-acr",
+      "label": "syncs with"
+    },
+    {
+      "id": "docker-to-aws-ecs",
+      "source": "docker",
+      "target": "aws-ecs",
+      "label": "provides images"
+    },
+    {
+      "id": "docker-to-azure-aci",
+      "source": "docker",
+      "target": "azure-aci",
+      "label": "provides images"
+    },
+    {
+      "id": "docker-to-gcp",
+      "source": "docker",
+      "target": "gcp-cloudrun",
+      "label": "provides images"
+    }
+  ]
+}

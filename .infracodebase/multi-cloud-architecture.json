@@ -1,0 +1,180 @@
+{
+  "nodes": [
+    {
+      "id": "users",
+      "label": "Users",
+      "subtitle": "Global Traffic",
+      "icon": "/icons/general/user/user.png"
+    },
+    {
+      "id": "cloudflare",
+      "label": "Cloudflare Load Balancer",
+      "subtitle": "Intelligent Routing",
+      "icon": "/icons/saas/cdn/cloudflare.png"
+    },
+    {
+      "id": "jenkins",
+      "label": "Jenkins CI/CD",
+      "subtitle": "Build & Deploy Pipeline",
+      "icon": "/icons/azure/deployment/jenkins.png"
+    },
+    {
+      "id": "docker-registry",
+      "label": "Docker Registry",
+      "subtitle": "Container Images",
+      "icon": "/icons/onprem/container/docker.png"
+    },
+    {
+      "id": "terraform",
+      "label": "Terraform",
+      "subtitle": "Infrastructure as Code",
+      "icon": "/icons/azure/deployment/terraform.png"
+    },
+    {
+      "id": "aws-vpc",
+      "label": "AWS VPC",
+      "subtitle": "10.0.0.0/16",
+      "icon": "/icons/aws/network/vpc.png"
+    },
+    {
+      "id": "aws-alb",
+      "label": "Application Load Balancer",
+      "subtitle": "AWS ALB",
+      "icon": "/icons/aws/network/elb-application-load-balancer.png"
+    },
+    {
+      "id": "aws-ecs",
+      "label": "ECS Fargate",
+      "subtitle": "Container Service",
+      "icon": "/icons/aws/aws.png"
+    },
+    {
+      "id": "aws-health",
+      "label": "Route53 Health Check",
+      "subtitle": "AWS Health Monitor",
+      "icon": "/icons/gcp/network/dns.png"
+    },
+    {
+      "id": "azure-vnet",
+      "label": "Virtual Network",
+      "subtitle": "10.1.0.0/16",
+      "icon": "/icons/azure/networking/virtual-network.png"
+    },
+    {
+      "id": "azure-appgw",
+      "label": "Application Gateway",
+      "subtitle": "Azure App Gateway",
+      "icon": "/icons/azure/networking/application-gateway.png"
+    },
+    {
+      "id": "azure-aci",
+      "label": "Container Instances",
+      "subtitle": "ACI Service",
+      "icon": "/icons/azure/compute/azure-hdinsight-on-aks.png"
+    },
+    {
+      "id": "azure-tm",
+      "label": "Traffic Manager",
+      "subtitle": "Azure Health Monitor",
+      "icon": "/icons/azure/networking/traffic-manager-profile.png"
+    }
+  ],
+  "edges": [
+    {
+      "id": "users-cf",
+      "source": "users",
+      "target": "cloudflare",
+      "label": "HTTPS requests"
+    },
+    {
+      "id": "cf-aws",
+      "source": "cloudflare",
+      "target": "aws-alb",
+      "label": "intelligent routing"
+    },
+    {
+      "id": "cf-azure",
+      "source": "cloudflare",
+      "target": "azure-appgw",
+      "label": "intelligent routing"
+    },
+    {
+      "id": "jenkins-docker",
+      "source": "jenkins",
+      "target": "docker-registry",
+      "label": "builds & pushes"
+    },
+    {
+      "id": "jenkins-aws",
+      "source": "jenkins",
+      "target": "aws-ecs",
+      "label": "deploys to"
+    },
+    {
+      "id": "jenkins-azure",
+      "source": "jenkins",
+      "target": "azure-aci",
+      "label": "deploys to"
+    },
+    {
+      "id": "terraform-aws",
+      "source": "terraform",
+      "target": "aws-vpc",
+      "label": "provisions"
+    },
+    {
+      "id": "terraform-azure",
+      "source": "terraform",
+      "target": "azure-vnet",
+      "label": "provisions"
+    },
+    {
+      "id": "aws-vpc-alb",
+      "source": "aws-vpc",
+      "target": "aws-alb",
+      "label": "contains"
+    },
+    {
+      "id": "aws-alb-ecs",
+      "source": "aws-alb",
+      "target": "aws-ecs",
+      "label": "routes to"
+    },
+    {
+      "id": "azure-vnet-appgw",
+      "source": "azure-vnet",
+      "target": "azure-appgw",
+      "label": "contains"
+    },
+    {
+      "id": "azure-appgw-aci",
+      "source": "azure-appgw",
+      "target": "azure-aci",
+      "label": "routes to"
+    },
+    {
+      "id": "aws-health-alb",
+      "source": "aws-health",
+      "target": "aws-alb",
+      "label": "monitors"
+    },
+    {
+      "id": "azure-tm-appgw",
+      "source": "azure-tm",
+      "target": "azure-appgw",
+      "label": "monitors"
+    },
+    {
+      "id": "cf-aws-health",
+      "source": "cloudflare",
+      "target": "aws-health",
+      "label": "checks health"
+    },
+    {
+      "id": "cf-azure-tm",
+      "source": "cloudflare",
+      "target": "azure-tm",
+      "label": "checks health"
+    }
+  ]
+}

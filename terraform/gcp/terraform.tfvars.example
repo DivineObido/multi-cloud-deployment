@@ -1,0 +1,34 @@
+# Project Configuration
+project_id = "my-gcp-project-id"
+gcp_region = "us-central1"
+zones      = ["us-central1-a", "us-central1-b"]
+
+# Environment Configuration
+environment  = "prod"
+project_name = "multi-cloud-app"
+app_name     = "web-app"
+
+# Network Configuration
+vpc_cidr               = "10.2.0.0/16"
+public_subnet_cidrs    = ["10.2.1.0/24", "10.2.2.0/24"]
+private_subnet_cidrs   = ["10.2.10.0/24", "10.2.20.0/24"]
+
+# Application Configuration
+container_image = "gcr.io/cloudrun/hello"
+container_port  = 8080
+service_cpu     = "1000m"
+service_memory  = "512Mi"
+min_instances   = 1
+max_instances   = 10
+
+# Environment Variables
+environment_variables = [
+  {
+    name  = "NODE_ENV"
+    value = "production"
+  },
+  {
+    name  = "CLOUD_PROVIDER"
+    value = "GCP"
+  }
+]
