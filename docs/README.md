@@ -26,7 +26,7 @@ This project demonstrates a comprehensive, enterprise-grade multi-cloud deployme
    - Cloudflare account with API token
 
 2. **Tools**:
-   - Terraform >= 1.0
+   - Terraform
    - Docker with registry access
    - Jenkins server with required plugins
    - Security scanning tools (checkov, tfsec)
@@ -89,7 +89,7 @@ The architecture includes a complete multi-cloud setup with:
 - **Security Protection**: WAF on all clouds, KMS encryption, secure networking
 - **CI/CD Pipeline**: Jenkins + Docker registry integration
 - **Monitoring**: Comprehensive logging and alerting across all platforms
-
+<img width="742" height="748" alt="image" src="https://github.com/user-attachments/assets/624711d0-4e36-486f-acae-4ddaed50e64a" />
 See `.infracodebase/multi-cloud-secure-architecture.json` for the complete visual architecture.
 
 ## Cost Analysis
